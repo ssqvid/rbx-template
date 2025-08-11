@@ -77,7 +77,7 @@ else
     mkdir -p src/shared
     touch src/shared/module.ts
     echo "export function makeHello(name: string) {
-    return \"Hello from ${name}!\";
+    return \"Hello from \${name}!\";
 }" >> src/shared/module.ts
 
     mkdir -p src/server
