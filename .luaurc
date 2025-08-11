@@ -1,0 +1,12 @@
+{
+  "languageMode": "strict",
+  "lint": {
+    "*": false
+  },
+  "aliases": {
+    "lune": "~/.lune/.typedefs/0.9.4/",
+    "pkg": "roblox_packages",
+    "net": "src/network",
+    "shared": "src/shared"
+  }
+}

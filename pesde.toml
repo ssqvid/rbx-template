@@ -1,0 +1,57 @@
+name = "alex/game"
+version = "0.1.0"
+
+[target]
+environment = "roblox"
+
+[engines]
+pesde = "=0.7.0"
+lune = "=0.9.4"
+
+[indices]
+default = "https://github.com/pesde-pkg/index"
+
+[wally_indices]
+default = "https://github.com/UpliftGames/wally-index"
+
+[scripts]
+roblox_sync_config_generator = ".pesde/scripts/roblox_sync_config_generator.luau"
+sourcemap_generator = ".pesde/scripts/sourcemap_generator.luau"
+
+[dev_dependencies]
+scripts = { name = "jiwonz/pesde_scripts_rojo", version = "^0.1.0-rc.1", target = "lune" }
+#rojo = { name = "pesde/rojo", version = "7.5.1", target = "lune" }
+#asphalt = { name = "pesde/asphalt", version = "0.9.1", target = "lune" }
+#selene = { name = "pesde/selene", version = "0.28.0", target = "lune" }
+#stylua = { name = "pesde/stylua", version = "2.1.0", target = "lune" }
+#darklua = { name = "pesde/darklua", version = "0.16.0", target = "lune" }
+#luau-lsp = { name = "pesde/luau_lsp", version = "1.48.0", target = "lune" }
+#blink = { name = "pesde/blink", version = "0.17.3", target = "lune" }
+
+ui-labs = { name = "pepeeltoro41/ui_labs", version = "=2.4.0", target = "roblox" }
+jest = { wally = "jsdotlua/jest", version = "=3.10.0" }
+jest-globals = { wally = "jsdotlua/jest-globals", version = "=3.10.0" }
+
+[dependencies]
+t = { wally = "osyrisrblx/t", version = "=3.1.1" }
+promise = { wally = "howmanysmall/typed-promise", version = "=4.0.6" }
+janitor = { wally = "howmanysmall/janitor", version = "=1.18.3" }
+lemonsignal = { wally = "data-oriented-house/lemonsignal", version = "=1.10.0" }
+lyra = { wally = "paradoxum-games/lyra", version = "=0.6.0" }
+jecs = { wally = "ukendio/jecs", version = "=0.8.3" }
+jabby = { wally = "alicesaidhi/jabby", version = "=0.3.1" }
+charm = { wally = "pepeeltoro41/charm-with-dispatchers", version = "=0.0.4" }
+charm-sync = { wally = "littensy/charm-sync", version = "=0.3.0" }
+ripple = { wally = "littensy/ripple", version = "=0.9.3" }
+vide = { name = "alicesaidhi/vide", version = "=0.3.1-lite.672", target = "roblox" }
+vide-charm = { wally = "littensy/vide-charm", version = "=0.3.0" }
+
+[overrides]
+"lyra>promise" = "promise"
+"ripple>promise" = "promise"
+"jabby>jecs" = "jecs"
+"jabby>vide" = "vide"
+"jabby>pebble>vide" = "vide"
+"charm-sync>charm" = "charm"
+"vide-charm>vide" = "vide"
+"vide-charm>charm" = "charm"

@@ -1,0 +1,191 @@
+name: CI/CD
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/**'
+  pull_request:
+    paths:
+      - 'src/**'
+
+jobs:
+  install:
+    name: Install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Rokit
+        uses: CompeyDev/setup-rokit@v0.1.2
+        with:
+          cache: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Pesde
+        uses: ssqvid/setup-pesde@main
+        with:
+          cache: true
+          version: 0.7.0-rc.7
+
+
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    needs: [install]
+    timeout-minutes: 1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Rokit
+        uses: CompeyDev/setup-rokit@v0.1.2
+        with:
+          cache: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Pesde
+        uses: ssqvid/setup-pesde@main
+        with:
+          cache: true
+          version: 0.7.0-rc.7
+     
+      - run: pesde install
+
+      - name: Generate Networking Files
+        run: >
+          blink 
+          .blink/init 
+          --yes
+
+      - name: Generate Rojo Sourcemap
+        run: >
+          rojo 
+          sourcemap 
+          default.project.json 
+          -o sourcemap.json
+
+      - name: Download ROBLOX Definition File
+        run: >
+          curl 
+          -L "https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/refs/heads/main/scripts/globalTypes.d.luau" 
+          -o globalTypes.d.luau
+
+      - name: Analyze Codebase
+        run: > 
+          luau-lsp 
+          analyze 
+          --platform roblox
+          --no-strict-dm-types
+          --base-luaurc .luaurc
+          --defs globalTypes.d.luau
+          --sourcemap sourcemap.json
+          --ignore "*.d.luau"
+          --ignore "**/.pesde/**"
+          --ignore "**/roblox_packages/**"
+          --ignore "**/luau_packages/**"
+          --ignore "**/lune_packages/**"
+          --ignore "**/network/**"
+          .
+
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    needs: [install]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Rokit
+        uses: CompeyDev/setup-rokit@v0.1.2
+        with:
+          cache: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+     
+      - name: Check Format w/ StyLua
+        run: >
+          stylua
+          --check
+          .
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    needs: [install]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Rokit
+        uses: CompeyDev/setup-rokit@v0.1.2
+        with:
+          cache: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lint w/ Selene
+        run: selene .
+
+  cd:
+    name: CD
+    runs-on: ubuntu-latest
+    needs: [analyze, format, lint]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Rokit
+        uses: CompeyDev/setup-rokit@v0.1.2
+        with:
+          cache: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Pesde
+        uses: ssqvid/setup-pesde@main
+        with:
+          cache: true
+          version: 0.7.0-rc.7
+
+      - run: pesde install
+
+      - name: Generate Networking Files
+        run: >
+          blink 
+          .blink/init 
+          --yes
+
+      - name: Process Src w/ DarkLua
+        run: >
+          darklua 
+          process 
+          -c .darklua.json 
+          src
+          src
+
+      - name: Build w/ DarkLua
+        run: >
+          darklua 
+          process 
+          -c dist.darklua.json 
+          src
+          dist
+      
+      - name: Build Roblox Place From .rbxlx
+        run: >
+          rojo
+          build
+          dist.project.json 
+          -o dist.rbxl
+
+      - name: Run Unit Tests
+        run: >
+          lune
+          run 
+          upload 
+          dist.rbxl 
+          $TASK_FILE
+        env:
+          ROBLOX_API_KEY: ${{ secrets.ROBLOX_API_KEY }}
+          ROBLOX_UNIVERSE_ID: ${{ vars.ROBLOX_TEST_UNIVERSE_ID }}
+          ROBLOX_PLACE_ID: ${{ vars.ROBLOX_TEST_PLACE_ID }}
+          TASK_FILE: "tasks/runTests.luau"

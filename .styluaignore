@@ -1,0 +1,7 @@
+*.d.luau
+**/.pesde/**
+**/roblox_packages/**
+**/luau_packages/**
+**lune_packages/**
+**/network/**
+**/out/**

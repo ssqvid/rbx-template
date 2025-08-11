@@ -1,0 +1,46 @@
+name: CI/CD
+
+on:
+  workflow_dispatch:
+    push:
+      paths:
+        - "src/**"
+      pull_request:
+        paths:
+          - "src/**"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.14.0 
+          run_install: true
+
+      - uses: CompeyDev/setup-rokit@v0.1.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lint
+        run: |
+          pnpm eslint src
+          pnpm prettier --check src
+
+      - name: Build
+        run: pnpm build --verbose
+
+      - name: Unit Tests
+        run: >
+          lune
+          run 
+          upload 
+          dist.rbxl 
+          $TASK_FILE
+        env:
+          ROBLOX_API_KEY: ${{ secrets.ROBLOX_API_KEY }}
+          ROBLOX_UNIVERSE_ID: ${{ vars.ROBLOX_TEST_UNIVERSE_ID }}
+          ROBLOX_PLACE_ID: ${{ vars.ROBLOX_TEST_PLACE_ID }}
+          TASK_FILE: "tasks/runTests.luau"     

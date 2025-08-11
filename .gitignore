@@ -1,0 +1,33 @@
+# Pesde
+.pesde
+roblox_packages
+lune_packages
+luau_packages
+
+# Roblox Studio files
+/*.rbxlx
+/*.rbxlx.lock
+/*.rbxl
+/*.rbxl.lock
+
+# Development files
+.env
+build
+sourcemap.json
+roblox.yml
+en-us.json
+globalTypes.d.luau
+out
+network
+
+# MacOS files
+.DS_Store
+
+# Python files
+__pycache__
+.venv
+
+# Typescript files
+/node_modules
+/include
+*.tsbuildinfo

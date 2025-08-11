@@ -1,0 +1,15 @@
+[creator]
+type = "group"
+id = 17144188
+
+[codegen]
+typescript = true
+style = "flat"
+
+[inputs.assets]
+path = "assets/**/*"
+output_path = "src/shared"
+
+[inputs.assets.web]
+"some_sound_on_roblox.ogg" = { id = 123456789 }
+"some_image_on_roblox.png" = { id = 987654321 }

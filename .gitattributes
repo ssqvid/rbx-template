@@ -1,0 +1,9 @@
+*.luau text eol=lf
+*.ts text eol=lf
+*.lua text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.md text eol=lf
+*.rbxl binary
+*.rbxm binary
+*.rbxlx text

@@ -1,0 +1,11 @@
+[*]
+indent_style = space
+
+[*.{prettierrc,luaurc}]
+indent_size = 2
+
+[*.{json,yml,yaml,toml,blink}]
+indent_size = 2
+
+[*.{luau,lua,ts,py,sh}]
+indent_size = 4

@@ -1,0 +1,12 @@
+option Casing = Camel
+option Typescript = true
+option ServerOutput = "../src/server/blink.luau"
+option ClientOutput = "../src/shared/blink.luau"
+option PromiseLibrary = "ReplicatedStorage.Shared.Packages.promise"
+
+event MyEvent {
+  From: Server,
+  Type: Reliable,
+  Call: SingleSync,
+  Data: string,
+}
