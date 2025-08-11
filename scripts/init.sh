@@ -89,7 +89,7 @@ print(makeHello(\"main.server.ts\"));" >> src/server/main.server.ts
     touch src/client/main.client.ts
     echo "import { makeHello } from \"shared/module\";
 
-print(makeHello(\"main.server.ts\"));" >> src/client/main.client.ts
+print(makeHello(\"main.client.ts\"));" >> src/client/main.client.ts
 fi
 
 # Install necessary tooling.
