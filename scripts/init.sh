@@ -105,6 +105,14 @@ else
     pnpm install
 fi
 
+# Remove unnecessary files.
+if [[ $project_type == "luau" ]]; then
+    rm -f .prettierrc
+    rm -f eslint.config.ts
+    rm -f package.json
+    rm -f tsconfig.json
+fi
+
 # Build the project.
 if [[ $project_type == "luau" ]]; then
     chmod +x ./scripts/luau_dist.sh
