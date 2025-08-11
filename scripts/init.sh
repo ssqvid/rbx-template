@@ -74,19 +74,18 @@ if [[ $project_type == "luau" ]]; then
     cd ..
     rm -rf ./__temp__
 else
-    mkdir -p src/shared
+    mkdir -p src/{shared,server,client}
+
     touch src/shared/module.ts
     echo "export function makeHello(name: string) {
-    return \"Hello from \${name}!\";
+    return \`Hello from \${name}!\`;
 }" >> src/shared/module.ts
 
-    mkdir -p src/server
     touch src/server/main.server.ts
     echo "import { makeHello } from \"shared/module\";
 
 print(makeHello(\"main.server.ts\"));" >> src/server/main.server.ts
 
-    mkdir -p src/client
     touch src/client/main.client.ts
     echo "import { makeHello } from \"shared/module\";
 
