@@ -37,6 +37,7 @@
     "@rbxts/lemon-signal": "^1.2.0",
     "@rbxts/lyra": "^0.6.0",
     "@rbxts/planck": "^1.0.0",
+    "@rbxts/pretty-react-hooks": "^0.6.4",
     "@rbxts/react": "^17.2.3",
     "@rbxts/react-ripple": "^2.1.0",
     "@rbxts/react-roblox": "^17.2.3",
