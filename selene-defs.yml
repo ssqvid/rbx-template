@@ -1,0 +1,6 @@
+base: roblox
+name: selene-defs
+globals:
+  require:
+    args:
+      - type: string

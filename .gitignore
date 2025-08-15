@@ -19,6 +19,8 @@ en-us.json
 globalTypes.d.luau
 out
 network
+blink.luau
+blink.d.ts
 
 # MacOS files
 .DS_Store
