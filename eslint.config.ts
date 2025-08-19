@@ -1,3 +1,7 @@
 import isentinel from "@isentinel/eslint-config";
 
-export default isentinel();
+export default isentinel({
+    "no-spaced-func": true,
+    "react": true,
+    "test": true,
+});
