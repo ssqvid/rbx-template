@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 # This script is used to initialize a new Roblox project.
 # Configuration files by default are set to the language they are meant for.
@@ -50,19 +50,23 @@ else
 fi
 
 # Install necessary tooling.
+if [[ $project_type == "ts" ]]; then
+    rokit add lune
+fi
+
 rokit install
 
 if [ -e "globalTypes.d.luau" ]; then
     rm -f globalTypes.d.luau
 fi
 
-if [ -e "en-us.json" ]; then
-    rm -f en-us.json
+if [ -e "api-docs.json" ]; then
+    rm -f api-docs.json
 fi
 
 if [[ $project_type == "luau" ]]; then
-    chmod +x ./scripts/defs.sh
-    ./scripts/defs.sh
+    chmod +x ./scripts/luau_defs.sh
+    ./scripts/luau_defs.sh
 fi
 
 # Initialize the project source files.
