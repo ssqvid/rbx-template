@@ -126,7 +126,7 @@ def fix_asphalt():
 
 
 def fix_configs(project_type):
-    if project_type == "typescript":
+    if project_type == "ts":
         fix_luaurc()
         fix_rokit()
     else:
@@ -166,7 +166,7 @@ def generate_sourcemap(project_type, author, project_name):
 
 
 def generate_darklua(project_type):
-    if project_type == "typescript":
+    if project_type == "ts":
         return
 
     base_rules = darklua_base()
