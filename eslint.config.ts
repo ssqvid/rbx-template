@@ -1,7 +1,10 @@
 import isentinel from "@isentinel/eslint-config";
 
 export default isentinel({
-    "no-spaced-func": true,
-    "react": true,
-    "test": true,
+    react: true,
+    rules: {
+        "no-spaced-func": "off",
+    },
+    spellCheck: false,
+    test: true,
 });

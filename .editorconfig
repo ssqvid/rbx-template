@@ -1,5 +1,6 @@
 [*]
-indent_style = space
+indent_style = tab
+end_of_line = lf
 
 [*.{prettierrc,luaurc}]
 indent_size = 2

@@ -6,7 +6,7 @@
     "net": "blink .blink/init -y",
     "compile": "rbxtsc --verbose",
     "build": "rm -rf out && pnpm net && pnpm compile && rojo build --output dist.rbxl",
-    "lint": "eslint src && prettierd --check src",
+    "lint": "eslint src",
     "serve": "rojo serve",
     "watch": "rbxtsc -w"
   },
