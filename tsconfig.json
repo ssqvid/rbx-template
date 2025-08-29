@@ -1,41 +1,41 @@
 {
-  "compilerOptions": {
-    // required
-    "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true,
-    "jsx": "react",
-    "jsxFactory": "React.createElement",
-    "jsxFragmentFactory": "React.Fragment",
-    "module": "commonjs",
-    "moduleResolution": "Node",
-    "noLib": true,
-    "resolveJsonModule": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleDetection": "force",
-    "strict": true,
-    "target": "ESNext",
-    "typeRoots": [
-      "node_modules/@rbxts"
-    ],
-    // configurable
-    "rootDir": "src",
-    "outDir": "out",
-    "baseUrl": "src",
-    "incremental": true,
-    "tsBuildInfoFile": "out/tsconfig.tsbuildinfo",
-    "paths": {
-      "@blink-client": [
-        "src/client/blink"
-      ],
-      "@blink-server": [
-        "src/client/blink"
-      ],
-    }
-  },
-  "exclude": [
-    "node_modules",
-    "out",
-    "eslint.config.ts"
-  ]
+	"compilerOptions": {
+		// required
+		"allowSyntheticDefaultImports": true,
+		"downlevelIteration": true,
+		"jsx": "react",
+		"jsxFactory": "React.createElement",
+		"jsxFragmentFactory": "React.Fragment",
+		"module": "commonjs",
+		"moduleResolution": "Node",
+		"noLib": true,
+		"resolveJsonModule": true,
+		"experimentalDecorators": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleDetection": "force",
+		"strict": true,
+		"target": "ESNext",
+		"typeRoots": [
+			"node_modules/@rbxts"
+		],
+		// configurable
+		"rootDir": "src",
+		"outDir": "out",
+		"baseUrl": "src",
+		"incremental": true,
+		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",
+		"paths": {
+			"@blink-client": [
+				"client/blink"
+			],
+			"@blink-server": [
+				"server/blink"
+			],
+		}
+	},
+	"exclude": [
+		"node_modules",
+		"out",
+		"eslint.config.ts"
+	]
 }

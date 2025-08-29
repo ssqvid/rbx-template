@@ -1,13 +1,13 @@
 std = "selene-defs"
 exclude = [
-  "*.d.luau",
-  "**/.pesde/**",
-  "**/roblox_packages/**",
-  "**/luau_packages/**",
-  "**/lune_packages/**",
-  "**/network/**",
-  "**/out/**",
-  "**/test/**",
+	"*.d.luau",
+	"**/.pesde/**",
+	"**/roblox_packages/**",
+	"**/luau_packages/**",
+	"**/lune_packages/**",
+	"**/network/**",
+	"**/out/**",
+	"**/test/**",
 ]
 
 [lints]
@@ -28,7 +28,7 @@ mismatched_arg_count = "deny"
 mixed_table = "allow"
 multiple_statements = "deny"
 must_use = "deny"
-parenthese_conditions = "deny"
+parenthese_conditions = "allow"
 roblox_incorrect_color3_new_bounds = "deny"
 roblox_incorrect_roact_usage = "deny"
 roblox_suspicious_udim2_new = "deny"
