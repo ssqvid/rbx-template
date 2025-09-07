@@ -21,7 +21,7 @@ done
 read -p "Enter the author's name: " author_name
 author_name=${author_name// /}
 if [[ $project_type == "luau" ]]; then
-    while [[ ${#author_name} -lt 3 && ${#author_name} -gt 32 ]]; do
+    while [[ ${#author_name} -lt 3 || ${#author_name} -gt 32 ]]; do
         read -p "Try Again! Enter the author's name: " author_name
         author_name=${author_name// /}
     done
